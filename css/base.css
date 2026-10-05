@@ -1,0 +1,179 @@
+/*
+ * One fixed light theme for every condition. Colour, type and spacing are held
+ * constant on purpose so the menu's structure is the only manipulated variable
+ * (colour-based emotion adaptation is already covered by UIFlex 2.0 / EmoWeb).
+ */
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f0f2f5;
+  --ink: #1b2130;
+  --ink-2: #4a5366;
+  --ink-3: #78819a;
+  --line: #e1e5eb;
+  --line-strong: #c9d0da;
+  --accent: #2b59c3;
+  --accent-hover: #234aa6;
+  --accent-ink: #ffffff;
+  --accent-soft: #e9effb;
+  --focus: #2b59c3;
+  --radius: 10px;
+  --radius-sm: 7px;
+  --shadow: 0 12px 32px rgba(18, 28, 56, 0.14), 0 2px 6px rgba(18, 28, 56, 0.06);
+  --header-h: 64px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+html { scrollbar-gutter: stable; }
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+[hidden] { display: none !important; }
+
+.icon { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.chevron { color: var(--ink-3); }
+
+kbd {
+  font: 600 11px/1 var(--font);
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+
+/* ---------- Site shell ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--accent);
+  box-shadow: inset -8px -8px 0 rgba(255, 255, 255, 0.18);
+}
+
+.nav-slot { flex: 1; min-width: 0; display: flex; align-items: center; height: 100%; position: relative; }
+
+.task-bar {
+  padding: 10px 24px;
+  background: #fff8e1;
+  border-bottom: 1px solid #f0e2b0;
+  color: #5c4a12;
+  font-size: 14px;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+  outline: none;
+}
+
+.crumbs { margin: 0 0 6px; color: var(--ink-3); font-size: 13px; white-space: pre; }
+
+.page h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.01em; }
+
+.lead { margin: 0 0 28px; color: var(--ink-2); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.card-img { aspect-ratio: 4 / 3; border-radius: var(--radius-sm); background: var(--surface-2); margin-bottom: 12px; }
+.card-line { height: 10px; border-radius: 5px; background: var(--surface-2); margin-bottom: 8px; }
+.card-line.short { width: 55%; }
+
+/* ---------- Researcher panel ---------- */
+
+.researcher-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 100;
+  width: 240px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: #dfe4ee;
+  background: #1b2130;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.rp-row { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+.rp-val { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+.rp-actions { display: flex; gap: 8px; margin-top: 10px; }
+.rp-actions button {
+  flex: 1;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 600;
+}
+.rp-actions button:hover { background: rgba(255, 255, 255, 0.18); }
+
+@media (max-width: 640px) {
+  .site-header { gap: 14px; padding: 0 16px; }
+  .brand { font-size: 0; gap: 0; }
+  .page { padding: 24px 16px 64px; }
+  .task-bar { padding: 10px 16px; }
+}
